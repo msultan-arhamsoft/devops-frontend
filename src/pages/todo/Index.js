@@ -62,8 +62,9 @@ const Index = () => {
                   </div>
                   <ul className="list-group mb-0">
                     {tasksData != null && tasksData.length > 0
-                      ? tasksData.map((el) => (
+                      ? tasksData.map((el, index) => (
                           <List
+                            key={index}
                             description={el.description}
                           />
                         ))

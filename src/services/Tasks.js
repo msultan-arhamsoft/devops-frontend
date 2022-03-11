@@ -1,7 +1,7 @@
 import { helpHttp } from '../helpers/helpHttp';
 
 const tasks = {};
-const url = 'http://localhost:8081/v1/todos';
+const url = process.env.REACT_APP_API_URL;
 const api = helpHttp();
 
 tasks.all = async () => {
