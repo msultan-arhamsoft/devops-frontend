@@ -7,11 +7,9 @@ services:
       - backend
       - frontend
     restart: always # because it is routing traffic to the entire app
-    build:
-      context: ./../nginx
-      dockerfile: Dockerfile
+    image: nginx
     volumes:
-      - "./../nginx/configs/default.conf:/etc/nginx/conf.d/default.conf"
+      - "./nginx/default.conf:/etc/nginx/conf.d/default.conf"
     ports:
       - '80:80'
     networks:
@@ -20,14 +18,11 @@ services:
 
   # frontend service serves the frontend of the application
   frontend:
-    #build the images (if not present already) before starting the app
-    build:
-      dockerfile: Dockerfile
-      context: .
+    image: mahmoodsultan/devops-frontend:phase1
     init: true
     restart: always
-    # env_file:
-    #   - ./.env
+    env_file:
+      - ./.env
     environment:
       REACT_APP_API_URL: ${API_URL}
     command: npm run start
@@ -43,9 +38,7 @@ services:
   # backend service serves the backend of the application
   backend:
     #build the images (if not present already) before starting the app
-    build: 
-      dockerfile: Dockerfile
-      context: ./../devops-todos
+    image: mahmoodsultan/devops-backend:phase1
     init: true
     restart: always
     depends_on:
