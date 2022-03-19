@@ -18,7 +18,7 @@ services:
 
   # frontend service serves the frontend of the application
   frontend:
-    image: mahmoodsultan/devops-frontend:phase1
+    image: mahmoodsultan/devops-frontend:phase2-c0668c23
     init: true
     restart: always
     env_file:
