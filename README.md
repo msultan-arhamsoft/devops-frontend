@@ -8,3 +8,6 @@ In order to make the application up and running do the following:
 - This docker-compose file contains the configurations for services nginx, frontend, backend, and mongodb.
 - Visit the http://localhost and you should see the default page of the frontend.
 - In this page you can create and view the ToDos.
+
+## Phase 2 submission. 
+- Main branch has the latest code for Jenkinsfile and github workflows files for CI/CD
