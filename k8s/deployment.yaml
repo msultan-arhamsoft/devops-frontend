@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: todosfrontend
+spec:
+  selector:
+    app: todosfrontend
+  ports:
+    - port: 80
+      targetPort: 3000
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todosfrontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todosfrontend
+  template:
+    metadata:
+      labels:
+        app: todosfrontend
+    spec:
+      containers:
+        - name: todosfrontend
+          image: mahmoodsultan/devops-frontend:phase2-c0668c23
+          ports:
+            - containerPort: 3000
+          env:
+            - name: REACT_APP_API_URL
+              value: http://192.168.49.2:31692/v1/todos # REPLACE THIS VALUE WITH THE SERVICE `service/todosbackend`'s URL =>  URL/v1/todos
+          imagePullPolicy: Always
